@@ -18,11 +18,10 @@ const Home = ({type}) => {
     }
     fetchVideos();
   },[type])
-
   return (
     <Container>
       {
-        videos?.map((video) => (
+        Array.isArray(videos) && videos?.map((video) => (
           <Card key={video._id} video={video}/>
         ))
       }
