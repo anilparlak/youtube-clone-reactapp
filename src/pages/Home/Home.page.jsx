@@ -10,7 +10,7 @@ const Home = ({type}) => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get(`/videos/${type}`);
-        setContent(()=>response.data)
+        console.log(response)
       } catch (error) {
         console.log("Error",error)
       }
