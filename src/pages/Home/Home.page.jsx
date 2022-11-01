@@ -4,13 +4,13 @@ import { Container } from './home.style'
 import axios from "axios"
 
 const Home = ({type}) => {
-  const [videos,setVideos] = useState([]);
+  const [content,setContent] = useState([]);
 
   useEffect(()=>{
     const fetchVideos = async () => {
       try {
         const response = await axios.get(`/videos/${type}`);
-        setVideos(()=>response.data)
+        setContent(()=>response.data)
       } catch (error) {
         console.log("Error",error)
       }
@@ -19,11 +19,11 @@ const Home = ({type}) => {
     fetchVideos();
     
   },[type])
-  console.log(videos)
+  console.log(content)
   return (
     <Container>
       {
-        videos && videos?.map((video) => (
+        content && content?.map((video) => (
           <Card key={video._id} video={video}/>
         ))
       }
