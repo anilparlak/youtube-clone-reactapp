@@ -14,7 +14,7 @@ import {
 } from "./Card.style";
 import { Link } from "react-router-dom";
 import {format} from "timeago.js";
-import axios from "axios"
+import { api } from "../../utils/api";
 
 
 const Card = ({ type , video }) => {
@@ -23,7 +23,7 @@ const Card = ({ type , video }) => {
   useEffect(()=>{
     const fetchChannels = async () => {
       try {
-        const response = await axios.get(`/users/find/${video.userId}`);
+        const response = await api().get(`/users/find/${video.userId}`);
         setChannel(()=>response.data)
       } catch (error) {
         console.log("Error",error)

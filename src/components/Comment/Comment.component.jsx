@@ -1,6 +1,7 @@
-import axios from "axios"
+
 import React, { useEffect, useState } from 'react'
 import { format } from 'timeago.js';
+import { api } from "../../utils/api";
 import { Avatar, Container, CustomAvatar, Date, DeleteComment, Details, Name, Text } from './comment.style'
 
 const Comment = ({comment,deleteIcon,reflesh,setReflesh}) => {
@@ -9,7 +10,7 @@ const Comment = ({comment,deleteIcon,reflesh,setReflesh}) => {
 
   useEffect(() => {
     const fetchComment = async () => {
-      const response = await axios.get(`/users/find/${comment.userId}`);
+      const response = await api().get(`/users/find/${comment.userId}`);
       setChannel(response.data)
     };
     fetchComment();
@@ -17,7 +18,7 @@ const Comment = ({comment,deleteIcon,reflesh,setReflesh}) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/comments/${comment._id}`)
+      await api().delete(`/comments/${comment._id}`)
       setReflesh(()=>!reflesh)
     } catch (error) {
       console.log("error",error)

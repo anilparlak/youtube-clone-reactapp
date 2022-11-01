@@ -3,9 +3,9 @@ import VideoPlayer from '../../components/Video/VideoPlayer.component'
 import { Container, Content, RecommendationContainer } from './video.style'
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from 'react-router-dom';
-import axios from "axios"
 import { fetchSucces } from '../../redux/slices/video.slice';
 import Recommendation from '../../components/Recommentaion/Recommendation.component';
+import { api } from '../../utils/api';
 
 const Video = () => {
 
@@ -19,8 +19,8 @@ const Video = () => {
  useEffect(() => {
   const getData = async () => {
     try {
-      const videoResponse = await axios.get(`/videos/find/${path}`);
-      const channelResponse = await axios.get(`/users/find/${videoResponse.data.userId}`);
+      const videoResponse = await api().get(`/videos/find/${path}`);
+      const channelResponse = await api().get(`/users/find/${videoResponse.data.userId}`);
       setChannel(channelResponse.data)
       dispatch(fetchSucces(videoResponse.data))
       

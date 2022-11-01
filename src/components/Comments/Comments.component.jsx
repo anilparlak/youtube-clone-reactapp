@@ -15,7 +15,7 @@ import {
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import Comment from "../Comment/Comment.component";
 import { useSelector } from "react-redux";
-import axios from "axios"
+import { api } from "../../utils/api";
 
 const Comments = ({ videoId }) => {
   const [hover, setHover] = useState(false);
@@ -34,7 +34,7 @@ const Comments = ({ videoId }) => {
 
   const sendCommentHandle = async () => {
     try {
-      await axios.post("/comments/",{description:inputComment,videoId})
+      await api().post("/comments/",{description:inputComment,videoId})
       setInputComment(()=>"")
       setReflesh(()=>!reflesh)
     } catch (error) {
@@ -44,7 +44,7 @@ const Comments = ({ videoId }) => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`/comments/${videoId}`);
+        const response = await api().get(`/comments/${videoId}`);
         setComments(response.data);
       } catch (error) {}
     };

@@ -1,6 +1,6 @@
-import axios from "axios"
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { api } from "../../utils/api";
 import Card from "../Card/Card.component";
 import { RecommendationContainer } from "./recommendation.style";
 
@@ -10,7 +10,7 @@ const Recommendation = ({ tags }) => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const response = await axios.get(`/videos/tags?tags=${tags}`);
+      const response = await api().get(`/videos/tags?tags=${tags}`);
       setVideos(response.data);
     };
     fetchVideos();

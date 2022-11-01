@@ -21,7 +21,7 @@ import {
 import { auth, provider } from "../../utils/firebase";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { api } from "../../utils/api";
 const USER_INFO = {
   name: "",
   password: "",
@@ -48,7 +48,7 @@ const SignIn = () => {
     dispatch(loginStart());
     const { loginName, loginPassword } = user;
     try {
-      const response = await axios.post("/auth/signin", { name:loginName, password:loginPassword });
+      const response = await api().post("/auth/signin", { name:loginName, password:loginPassword });
       console.log(response)
       dispatch(loginSucces(response.data));
       handleResetUser();
@@ -64,7 +64,7 @@ const SignIn = () => {
     dispatch(loginStart())
     signInWithPopup(auth, provider)
       .then((result) => {
-        axios.post("/auth/google",{
+        api().post("/auth/google",{
           name:result.user.displayName,
           email:result.user.email,
           img:result.user.photoURL
@@ -80,7 +80,7 @@ const SignIn = () => {
     e.preventDefault();
     const { name, password, email} = user;
     try {
-      const response = await axios.post("/auth/signup",{name,email,password});
+      const response = await api().post("/auth/signup",{name,email,password});
       setSignUpResult(response);
       (response.status === 200) && handleResetUser();
     } catch (error) {
