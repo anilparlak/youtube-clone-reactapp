@@ -10,7 +10,7 @@ const Home = ({type}) => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get(`/videos/${type}`);
-        setVideos(()=>response.data)
+        setVideos(response.data)
       } catch (error) {
         console.log("Error",error)
       }
@@ -21,7 +21,7 @@ const Home = ({type}) => {
   return (
     <Container>
       {
-        videos?.map((video) => (
+        videos.length && videos?.map((video) => (
           <Card key={video._id} video={video}/>
         ))
       }
