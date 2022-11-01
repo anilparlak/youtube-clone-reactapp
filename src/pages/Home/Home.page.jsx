@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../../components/Card/Card.component'
 import { Container } from './home.style'
+import {api} from "../../utils/api"
 import axios from "axios"
 
 const Home = ({type}) => {
@@ -9,7 +10,7 @@ const Home = ({type}) => {
   useEffect(()=>{
     const fetchVideos = async () => {
       try {
-        const response = await axios.get(`/videos/${type}`);
+        const response = await api().get(`/videos/${type}`);
         setContent(response.data)
       } catch (error) {
         console.log("Error",error)

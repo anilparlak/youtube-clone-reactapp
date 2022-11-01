@@ -1,7 +1,7 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// export function api(){
-//     return axios.create({
-//         baseURL: "http://localhost:5050/api/"
-//     })
-// }
+export function api(){
+    return axios.create({
+        baseURL: "https://youtube-clone-nodejs.herokuapp.com/api/"
+    })
+}
