@@ -34,7 +34,7 @@ const Card = ({ type , video }) => {
   },[video.userId]);
 
   return (
-    // <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
+    <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
       <Container type={type}>
         <CardImg src={video.imageUrl} type={type}/>
         <Details>
@@ -52,7 +52,7 @@ const Card = ({ type , video }) => {
           </ChannelInfo>
         </Details>
       </Container>
-    // </Link>
+    </Link>
   );
 };
 
