@@ -55,7 +55,7 @@ const VideoPlayer = ({ channel }) => {
       }
     }
     increaseViewFunc();
-  },[currentVideo._id])
+  },[currentVideo?._id])
 
   const handleLike = async () => {
     await api().put(`/users/like/${currentVideo._id}`);
