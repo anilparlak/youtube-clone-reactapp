@@ -101,7 +101,7 @@ const VideoPlayer = ({ channel }) => {
               ) : (
                 <ThumbUpOutlinedIcon />
               )}
-              {currentVideo.likes?.length}
+              {currentVideo?.likes?.length}
             </Button>
             <Button onClick={handleDislike}>
               {currentVideo?.dislikes?.includes(currentUser?._id) ? (
