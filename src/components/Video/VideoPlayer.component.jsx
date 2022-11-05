@@ -84,19 +84,19 @@ const VideoPlayer = ({ channel }) => {
     <Container>
       <VideoContent>
         <Player>
-          <VideoFrame src={currentVideo.videoUrl} controls  autoPlay/>
+          <VideoFrame src={currentVideo?.videoUrl} controls  autoPlay/>
         </Player>
         <VideoInfo>
-          <VideoName>{currentVideo.title}</VideoName>
+          <VideoName>{currentVideo?.title}</VideoName>
         </VideoInfo>
         <OtherInfo>
           <VideoViewsAndDate>
-            <Views>{currentVideo.views} views</Views>
-            <Date>{format(currentVideo.createdAt)}</Date>
+            <Views>{currentVideo?.views} views</Views>
+            <Date>{format(currentVideo?.createdAt)}</Date>
           </VideoViewsAndDate>
           <Buttons>
             <Button onClick={handleLike}>
-              {currentVideo.likes?.includes(currentUser?._id) ? (
+              {currentVideo?.likes?.includes(currentUser?._id) ? (
                 <ThumbUpIcon />
               ) : (
                 <ThumbUpOutlinedIcon />
@@ -104,7 +104,7 @@ const VideoPlayer = ({ channel }) => {
               {currentVideo.likes?.length}
             </Button>
             <Button onClick={handleDislike}>
-              {currentVideo.dislikes?.includes(currentUser?._id) ? (
+              {currentVideo?.dislikes?.includes(currentUser?._id) ? (
                 <ThumbDownIcon />
               ) : (
                 <ThumbDownAltOutlinedIcon />
