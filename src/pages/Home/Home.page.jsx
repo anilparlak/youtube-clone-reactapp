@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Card from '../../components/Card/Card.component'
 import { Container } from './home.style'
 import {api} from "../../utils/api"
+import axios from 'axios'
+import { BaseUrl } from '../../utils/baseUrl'
 
 const Home = ({type}) => {
   const [content,setContent] = useState([]);

@@ -38,6 +38,8 @@ import { dislike, fetchSucces, like } from "../../redux/slices/video.slice";
 import { subscription } from "../../redux/slices/user.slice";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../utils/api";
+import axios from "axios";
+import { BaseUrl } from "../../utils/baseUrl";
 
 const VideoPlayer = ({ channel }) => {
   const { currentVideo } = useSelector((state) => state.video);
@@ -58,11 +60,11 @@ const VideoPlayer = ({ channel }) => {
   },[currentVideo?._id])
 
   const handleLike = async () => {
-    await api().put(`/users/like/${currentVideo._id}`);
+    await axios.put(`/users/like/${currentVideo._id}`);
     dispatch(like(currentUser._id));
   };
   const handleDislike = async () => {
-    await api().put(`/users/dislike/${currentVideo._id}`);
+    await axios.put(`/users/dislike/${currentVideo._id}`);
     dispatch(dislike(currentUser._id));
   };
   const handleSub = async () => {
