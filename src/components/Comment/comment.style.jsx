@@ -21,6 +21,7 @@ export const CustomAvatar = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 20px;
+  text-transform: uppercase;
   font-family: 700;
   color: #fff;
 `;

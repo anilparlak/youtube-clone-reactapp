@@ -22,6 +22,7 @@ import { auth, provider } from "../../utils/firebase";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../utils/api";
+
 const USER_INFO = {
   name: "",
   password: "",
