@@ -12,11 +12,12 @@ import {
   Title,
   Wrapper,
 } from "./signIn.style";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   loginFailed,
   loginStart,
   loginSucces,
+  logout,
 } from "../../redux/slices/user.slice";
 import { auth, provider } from "../../utils/firebase";
 import { signInWithPopup } from "firebase/auth";
@@ -37,7 +38,7 @@ const SignIn = () => {
   const [error,setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { currentUser } = useSelector((state) => state.user);
   const handleSetUser = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -49,8 +50,8 @@ const SignIn = () => {
     dispatch(loginStart());
     const { loginName, loginPassword } = user;
     try {
+      dispatch(logout());
       const response = await api().post("/auth/signin", { name:loginName, password:loginPassword });
-      console.log(response)
       dispatch(loginSucces(response.data));
       handleResetUser();
       navigate("/")

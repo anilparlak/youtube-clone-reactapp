@@ -31,10 +31,10 @@ const Comments = ({ videoId }) => {
   const handleInput = (e) => {
     setInputComment(()=>e.target.value)
   }
-
+  
   const sendCommentHandle = async () => {
     try {
-      await api().post("/comments/",{description:inputComment,videoId})
+      await api(currentUser.token).post("/comments/",{description:inputComment,videoId})
       setInputComment(()=>"")
       setReflesh(()=>!reflesh)
     } catch (error) {
@@ -45,7 +45,7 @@ const Comments = ({ videoId }) => {
     const fetchComments = async () => {
       try {
         const response = await api().get(`/comments/${videoId}`);
-        setComments(response.data);
+        setComments(()=>response.data);
       } catch (error) {}
     };
     fetchComments();

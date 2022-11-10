@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "./search.style";
 import { useLocation } from "react-router-dom";
-import {api} from "../../utils/api"
+import { api } from "../../utils/api"
 import Card from "../../components/Card/Card.component"
 
 const Search = () => {

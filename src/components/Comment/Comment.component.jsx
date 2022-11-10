@@ -1,13 +1,13 @@
 
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { format } from 'timeago.js';
 import { api } from "../../utils/api";
 import { Avatar, Container, CustomAvatar, Date, DeleteComment, Details, Name, Text } from './comment.style'
 
 const Comment = ({comment,deleteIcon,reflesh,setReflesh}) => {
-  
+  const { currentUser } = useSelector((state) => state.user);
   const [channel, setChannel] = useState({});
-
   useEffect(() => {
     const fetchComment = async () => {
       const response = await api().get(`/users/find/${comment.userId}`);
@@ -18,12 +18,13 @@ const Comment = ({comment,deleteIcon,reflesh,setReflesh}) => {
 
   const handleDelete = async () => {
     try {
-      await api().delete(`/comments/${comment._id}`)
+      await api(currentUser.token).delete(`/comments/${comment._id}`)
       setReflesh(()=>!reflesh)
     } catch (error) {
       console.log("error",error)
     }
   } 
+  
   return (
     <Container>
       {

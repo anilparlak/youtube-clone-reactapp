@@ -18,6 +18,7 @@ import {
 import app from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../utils/api";
+import { useSelector } from "react-redux";
 const INITIAL_INFO = {
   title: "",
   description: "",
@@ -30,6 +31,7 @@ const Upload = ({ setOpen }) => {
   const [videoPerc, setVideoPerc] = useState(0);
   const [info, setInfo] = useState(INITIAL_INFO);
   const [tags, setTags] = useState([]);
+  const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const handleInfo = (e) => {
@@ -86,7 +88,7 @@ const Upload = ({ setOpen }) => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    const response = await api().post("/videos", { ...info, tags });
+    const response = await api(currentUser.token).post("/videos", { ...info, tags });
     console.log("res",response)
     setOpen(false);
     response.status === 200 && navigate(`/video/${response.data._id}`);

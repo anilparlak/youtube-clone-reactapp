@@ -46,7 +46,7 @@ const VideoPlayer = ({ channel }) => {
   const [popUpSub, setPopUpSub] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+ 
   useEffect(()=>{
     const increaseViewFunc = async () => {
       try {
@@ -59,11 +59,11 @@ const VideoPlayer = ({ channel }) => {
   },[currentVideo?._id])
 
   const handleLike = async () => {
-    await api().put(`/users/like/${currentVideo._id}`);
+    await api(currentUser.token).put(`/users/like/${currentVideo._id}`);
     dispatch(like(currentUser._id));
   };
   const handleDislike = async () => {
-    await api().put(`/users/dislike/${currentVideo._id}`);
+    await api(currentUser.token).put(`/users/dislike/${currentVideo._id}`);
     dispatch(dislike(currentUser._id));
   };
   const handleSub = async () => {
@@ -73,8 +73,8 @@ const VideoPlayer = ({ channel }) => {
         return;
       }
       currentUser?.subscribedUsers.includes(channel._id)
-        ? await api().put(`/users/unsub/${channel._id}`)
-        : await api().put(`/users/sub/${channel._id}`);
+        ? await api(currentUser.token).put(`/users/unsub/${channel._id}`)
+        : await api(currentUser.token).put(`/users/sub/${channel._id}`);
       dispatch(subscription(channel._id));
     } catch (error) {
       console.log("Error ->", error);
